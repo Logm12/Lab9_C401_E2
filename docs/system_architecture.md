@@ -1,6 +1,6 @@
 # System Architecture — Lab Day 09
 
-**Nhóm:** Helpdesk Orchestrator Team
+**Nhóm:** C401-E2
 **Ngày:** 14/04/2026
 **Version:** 1.0
 
