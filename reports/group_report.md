@@ -7,7 +7,7 @@
 | Nguyễn Doãn Hiếu | Supervisor Owner | chihieu3603@gmail.com |
 | Cao Chí Hải | Worker Owner | caochihai1710@gmail.com |
 | Mạc Phạm Thiên Long | MCP Owner | longmac321@gmail.com |
-| Bùi Hữu Huấn | Trace & Docs Owner | anhhuanvg02gmail.com |
+| Bùi Hữu Huấn | Trace & Docs Owner | anhhuanvg02@gmail.com |
 
 **Ngày nộp:** 2026-04-14  
 **Repo:** https://github.com/Logm12/Lab9_C401_E2.git
