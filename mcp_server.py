@@ -124,7 +124,6 @@ TOOL_SCHEMAS = {
 def tool_search_kb(query: str, top_k: int = 3) -> dict:
     """Semantic search in ChromaDB via retrieval worker."""
     try:
-        # Tải lại path để import workers
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from workers.retrieval import retrieve_dense
         chunks = retrieve_dense(query, top_k=top_k)
@@ -301,7 +300,6 @@ def create_fastapi_app():
     return app
 
 if __name__ == "__main__":
-    # Windows utf-8 fix
     if sys.platform == "win32":
         import codecs
         sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
