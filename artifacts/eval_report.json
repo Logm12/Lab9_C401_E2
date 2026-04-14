@@ -1,0 +1,9 @@
+{
+  "total_traces": 20,
+  "routing_distribution": {
+    "retrieval_worker": 10,
+    "policy_tool_worker": 10
+  },
+  "avg_llm_score": 0.3,
+  "llm_accuracy": "6/20 (30%)"
+}
