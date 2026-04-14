@@ -15,7 +15,6 @@ import sys
 from datetime import datetime
 from typing import TypedDict, Literal, Optional
 
-# Đảm bảo console output hỗ trợ tiếng Việt trên Windows
 if sys.platform == "win32":
     import codecs
     sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
@@ -125,7 +124,6 @@ def supervisor_node(state: AgentState) -> AgentState:
         risk_high = True
         route_reason += " | Cảnh báo: Task có độ rủi ro cao/khẩn cấp"
 
-    # Ghi nhận kết quả
     state["supervisor_route"] = route
     state["route_reason"] = route_reason
     state["needs_tool"] = needs_tool
@@ -216,17 +214,14 @@ def build_graph():
     """
     workflow = StateGraph(AgentState)
 
-    # Thêm các nodes
     workflow.add_node("supervisor", supervisor_node)
     workflow.add_node("human_review", human_review_node)
     workflow.add_node("retrieval_worker", retrieval_worker_node)
     workflow.add_node("policy_tool_worker", policy_tool_worker_node)
     workflow.add_node("synthesis_worker", synthesis_worker_node)
 
-    # Thiết lập START
     workflow.add_edge(START, "supervisor")
 
-    # Conditional Edges từ Supervisor
     workflow.add_conditional_edges(
         "supervisor",
         route_decision,
@@ -237,7 +232,6 @@ def build_graph():
         }
     )
 
-    # Sau khi Human Review xong, quay lại Route Decision để đi đến worker ban đầu
     workflow.add_conditional_edges(
         "human_review",
         route_decision,
@@ -247,14 +241,11 @@ def build_graph():
         }
     )
 
-    # Các worker đều dẫn về Synthesis
     workflow.add_edge("retrieval_worker", "synthesis_worker")
     workflow.add_edge("policy_tool_worker", "synthesis_worker")
     
-    # Synthesis kết thúc graph
     workflow.add_edge("synthesis_worker", END)
 
-    # Compile app
     app = workflow.compile()
     
     def run(state: AgentState) -> AgentState:
@@ -311,7 +302,6 @@ if __name__ == "__main__":
     print("Day 09 Lab — TIP-001: Scaffold, Supervisor & HITL")
     print("=" * 60)
 
-    # Acceptance Criteria
     test_queries = [
         "SLA xử lý ticket P1 là bao lâu?",
         "Khách hàng Flash Sale yêu cầu hoàn tiền vì sản phẩm lỗi — được không?",
@@ -326,7 +316,6 @@ if __name__ == "__main__":
         print(f"  Logic Reason: {result['route_reason']}")
         print(f"  Trace File: artifacts/traces/{result['run_id']}.json")
 
-        # Lưu trace
         save_trace(result)
 
     print("\nReady for Sprint 2.")
